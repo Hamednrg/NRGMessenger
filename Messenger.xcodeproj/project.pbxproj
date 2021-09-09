@@ -13,6 +13,12 @@
 		057D264326E9FCA3007FC6A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057D264126E9FCA3007FC6A9 /* Main.storyboard */; };
 		057D264526E9FCA5007FC6A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057D264426E9FCA5007FC6A9 /* Assets.xcassets */; };
 		057D264826E9FCA5007FC6A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057D264626E9FCA5007FC6A9 /* LaunchScreen.storyboard */; };
+		057D265626EA0102007FC6A9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265526EA0102007FC6A9 /* LoginViewController.swift */; };
+		057D265826EA0154007FC6A9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265726EA0154007FC6A9 /* RegisterViewController.swift */; };
+		057D265A26EA0192007FC6A9 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265926EA0192007FC6A9 /* PhotoViewerViewController.swift */; };
+		057D265C26EA01AB007FC6A9 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265B26EA01AB007FC6A9 /* VideoPlayerViewController.swift */; };
+		057D265E26EA01DD007FC6A9 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265D26EA01DD007FC6A9 /* NewConversationViewController.swift */; };
+		057D266026EA01FA007FC6A9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265F26EA01FA007FC6A9 /* ProfileViewController.swift */; };
 		4FC5FE30E7917825A033B6F8 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F21DC9513E1277D17055DCB /* Pods_Messenger.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +31,12 @@
 		057D264426E9FCA5007FC6A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		057D264726E9FCA5007FC6A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		057D264926E9FCA5007FC6A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		057D265526EA0102007FC6A9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		057D265726EA0154007FC6A9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		057D265926EA0192007FC6A9 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
+		057D265B26EA01AB007FC6A9 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
+		057D265D26EA01DD007FC6A9 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
+		057D265F26EA01FA007FC6A9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		15BA7D49DB14F1003CFB6147 /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
 		9F21DC9513E1277D17055DCB /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0497CD7ECEA6E3A91B17AC /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +89,12 @@
 			isa = PBXGroup;
 			children = (
 				057D263F26E9FCA3007FC6A9 /* ConversationViewController.swift */,
+				057D265526EA0102007FC6A9 /* LoginViewController.swift */,
+				057D265926EA0192007FC6A9 /* PhotoViewerViewController.swift */,
+				057D265726EA0154007FC6A9 /* RegisterViewController.swift */,
+				057D265B26EA01AB007FC6A9 /* VideoPlayerViewController.swift */,
+				057D265D26EA01DD007FC6A9 /* NewConversationViewController.swift */,
+				057D265F26EA01FA007FC6A9 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -235,9 +253,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057D265626EA0102007FC6A9 /* LoginViewController.swift in Sources */,
+				057D265826EA0154007FC6A9 /* RegisterViewController.swift in Sources */,
+				057D265E26EA01DD007FC6A9 /* NewConversationViewController.swift in Sources */,
 				057D264026E9FCA3007FC6A9 /* ConversationViewController.swift in Sources */,
+				057D265C26EA01AB007FC6A9 /* VideoPlayerViewController.swift in Sources */,
 				057D263C26E9FCA3007FC6A9 /* AppDelegate.swift in Sources */,
+				057D266026EA01FA007FC6A9 /* ProfileViewController.swift in Sources */,
 				057D263E26E9FCA3007FC6A9 /* SceneDelegate.swift in Sources */,
+				057D265A26EA0192007FC6A9 /* PhotoViewerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
