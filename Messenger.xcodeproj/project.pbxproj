@@ -19,6 +19,7 @@
 		057D265C26EA01AB007FC6A9 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265B26EA01AB007FC6A9 /* VideoPlayerViewController.swift */; };
 		057D265E26EA01DD007FC6A9 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265D26EA01DD007FC6A9 /* NewConversationViewController.swift */; };
 		057D266026EA01FA007FC6A9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265F26EA01FA007FC6A9 /* ProfileViewController.swift */; };
+		059E8EAD26ED062D00742822 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E8EAC26ED062D00742822 /* Extensions.swift */; };
 		4FC5FE30E7917825A033B6F8 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F21DC9513E1277D17055DCB /* Pods_Messenger.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		057D265B26EA01AB007FC6A9 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		057D265D26EA01DD007FC6A9 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		057D265F26EA01FA007FC6A9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		059E8EAC26ED062D00742822 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		15BA7D49DB14F1003CFB6147 /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
 		9F21DC9513E1277D17055DCB /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0497CD7ECEA6E3A91B17AC /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,9 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				057D263F26E9FCA3007FC6A9 /* ConversationViewController.swift */,
-				057D265526EA0102007FC6A9 /* LoginViewController.swift */,
+				059E8EAB26ECFFC400742822 /* Login */,
 				057D265926EA0192007FC6A9 /* PhotoViewerViewController.swift */,
-				057D265726EA0154007FC6A9 /* RegisterViewController.swift */,
 				057D265B26EA01AB007FC6A9 /* VideoPlayerViewController.swift */,
 				057D265D26EA01DD007FC6A9 /* NewConversationViewController.swift */,
 				057D265F26EA01FA007FC6A9 /* ProfileViewController.swift */,
@@ -127,6 +128,7 @@
 			children = (
 				057D263B26E9FCA3007FC6A9 /* AppDelegate.swift */,
 				057D263D26E9FCA3007FC6A9 /* SceneDelegate.swift */,
+				059E8EAC26ED062D00742822 /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -138,6 +140,15 @@
 				057D264626E9FCA5007FC6A9 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		059E8EAB26ECFFC400742822 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				057D265526EA0102007FC6A9 /* LoginViewController.swift */,
+				057D265726EA0154007FC6A9 /* RegisterViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		0927E3F469FCC54E96DA8360 /* Pods */ = {
@@ -255,6 +266,7 @@
 			files = (
 				057D265626EA0102007FC6A9 /* LoginViewController.swift in Sources */,
 				057D265826EA0154007FC6A9 /* RegisterViewController.swift in Sources */,
+				059E8EAD26ED062D00742822 /* Extensions.swift in Sources */,
 				057D265E26EA01DD007FC6A9 /* NewConversationViewController.swift in Sources */,
 				057D264026E9FCA3007FC6A9 /* ConversationViewController.swift in Sources */,
 				057D265C26EA01AB007FC6A9 /* VideoPlayerViewController.swift in Sources */,
