@@ -22,6 +22,9 @@ class RegisterViewController: UIViewController {
         image.tintColor = .systemBlue
         image.isUserInteractionEnabled = true
         image.contentMode = .scaleAspectFit
+        image.layer.masksToBounds = true
+        image.layer.borderWidth = 2
+        image.layer.borderColor = UIColor.systemBlue.cgColor
         return image
     }()
     
@@ -44,39 +47,39 @@ class RegisterViewController: UIViewController {
     }()
     
     private lazy var firstNameField: UITextField = {
-        let email = UITextField()
-        email.autocapitalizationType = .none
-        email.autocorrectionType = .no
-        email.returnKeyType = .continue
-        email.layer.cornerRadius = 12
-        email.layer.borderWidth = 1
-        email.layer.borderColor = UIColor.lightGray.cgColor
-        email.placeholder = "First Name..."
-        email.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        email.leftViewMode = .always
-        email.backgroundColor = .white
+        let firstName = UITextField()
+        firstName.autocapitalizationType = .none
+        firstName.autocorrectionType = .no
+        firstName.returnKeyType = .continue
+        firstName.layer.cornerRadius = 12
+        firstName.layer.borderWidth = 1
+        firstName.layer.borderColor = UIColor.lightGray.cgColor
+        firstName.placeholder = "First Name..."
+        firstName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
+        firstName.leftViewMode = .always
+        firstName.backgroundColor = .white
         
-        email.delegate = self
+        firstName.delegate = self
         
-        return email
+        return firstName
     }()
     
     private lazy var lastNameField: UITextField = {
-        let email = UITextField()
-        email.autocapitalizationType = .none
-        email.autocorrectionType = .no
-        email.returnKeyType = .continue
-        email.layer.cornerRadius = 12
-        email.layer.borderWidth = 1
-        email.layer.borderColor = UIColor.lightGray.cgColor
-        email.placeholder = "Last Name..."
-        email.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
-        email.leftViewMode = .always
-        email.backgroundColor = .white
+        let firstName = UITextField()
+        firstName.autocapitalizationType = .none
+        firstName.autocorrectionType = .no
+        firstName.returnKeyType = .continue
+        firstName.layer.cornerRadius = 12
+        firstName.layer.borderWidth = 1
+        firstName.layer.borderColor = UIColor.lightGray.cgColor
+        firstName.placeholder = "Last Name..."
+        firstName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
+        firstName.leftViewMode = .always
+        firstName.backgroundColor = .white
         
-        email.delegate = self
+        firstName.delegate = self
         
-        return email
+        return firstName
     }()
     private lazy var passwordField: UITextField = {
         let password = UITextField()
@@ -124,7 +127,7 @@ class RegisterViewController: UIViewController {
         scrollview.addSubview(passwordField)
         scrollview.addSubview(loginButton)
         
-        let gesture = UIGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapChangeProfilePic))
         imageView.addGestureRecognizer(gesture)
     }
     override func viewDidLayoutSubviews() {
@@ -132,6 +135,7 @@ class RegisterViewController: UIViewController {
         scrollview.frame = view.bounds
         let size = scrollview.width/3
         imageView.frame = CGRect(x: (scrollview.width-size)/2, y: 20, width: size, height: size)
+        imageView.layer.cornerRadius = imageView.width/2.0
         
         firstNameField.frame = CGRect(x: 30, y: imageView.bottom+60, width: scrollview.width-60 , height: 52)
         lastNameField.frame = CGRect(x: 30, y: firstNameField.bottom+20, width: scrollview.width-60 , height: 52)
@@ -145,7 +149,7 @@ class RegisterViewController: UIViewController {
     
     @objc private func didTapChangeProfilePic(){
         
-        print("gesture called")
+        presentPhotoActionSheet()
     }
     
     @objc private func registerButtonTapped(){
@@ -187,5 +191,50 @@ extension RegisterViewController: UITextFieldDelegate {
             registerButtonTapped()
         }
         return true
+    }
+}
+
+extension RegisterViewController: UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
+    
+    func presentPhotoActionSheet(){
+        let actionSheet = UIAlertController(title: "Profile Picture", message: "How would you like to select a picture", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { [weak self] _ in
+            self?.presentCamera()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "choose Photo", style: .default, handler: { [weak self] _ in
+            self?.presentPhotoPicker()
+        }))
+        present(actionSheet, animated: true)
+    }
+    
+    func presentCamera(){
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.sourceType = .camera
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    
+    func presentPhotoPicker(){
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.sourceType = .photoLibrary
+        vc.allowsEditing = true
+        present(vc, animated: true)
+    }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {return}
+        self.imageView.image = selectedImage
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
