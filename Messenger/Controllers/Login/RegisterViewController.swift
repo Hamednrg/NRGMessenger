@@ -164,23 +164,31 @@ class RegisterViewController: UIViewController {
               let name = firstNameField.text,
               let last = lastNameField.text,
               !email.isEmpty, !password.isEmpty,!name.isEmpty, !last.isEmpty, password.count >= 6 else { alertUserLoginError()
-            return }
+                        return }
         // FireBase log in
         DatabaseManager.shared.userExists(with: email) { [weak self] exist in
             guard let strongSelf = self else { return }
-            guard !exist else {
+
+            if !exist {
+                FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion:  {  authResult , error in
+                    
+                    guard authResult != nil, error == nil else {
+                        print(" create user error")
+                        return
+                    }
+                    
+                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: name, lastName: last, emailAddress: email))
+                    
+                    
+                    strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+                })
+            } else {
+                // User already exist
                 strongSelf.alertUserLoginError(message: "Looks like a user account for that email address already exists.")
                 return
             }
-            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion:  {  authResult , error in
-                
-                guard authResult == nil, error == nil else {
-                    print("error")
-                    return
-                }
-                DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: name, lastName: last, emailAddress: email))
-                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-            })
+            
+          
         }
         
         
