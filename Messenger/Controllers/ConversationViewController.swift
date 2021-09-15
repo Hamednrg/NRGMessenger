@@ -21,6 +21,7 @@ class ConversationViewController: UIViewController {
         vaidateAuth()
         
     }
+    
     private func vaidateAuth(){
         if FirebaseAuth.Auth.auth().currentUser == nil{
             let vc = LoginViewController()

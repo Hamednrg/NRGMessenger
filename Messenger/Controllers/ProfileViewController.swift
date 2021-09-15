@@ -38,7 +38,7 @@ extension ProfileViewController: UITableViewDelegate{
                 nav.modalPresentationStyle = .fullScreen
                 strongSelf.present(nav, animated: true)
             } catch  {
-                print("faild to log out")
+                print("Faild to log out")
             }
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
