@@ -74,7 +74,7 @@ class LoginViewController: UIViewController {
     private lazy var fbLoginButton: FBLoginButton = {
        let button = FBLoginButton()
 //        fbLoginButton.delegate = self
-        button.permissions = ["email,public_profile"]
+        button.permissions = ["public_profile", "email"]
         return button
     }()
     override func viewDidLoad() {
@@ -147,28 +147,27 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
-//extension LoginViewController: LoginButtonDelegate {
-//    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-//        // no operation
-//    }
-//
-//    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-//
-//        guard let token = result?.token?.tokenString else {
-//            print("User failed to log in with facebook")
-//            return
-//        }
-//        let credential = FacebookAuthProvider.credential(withAccessToken: token)
-//        FirebaseAuth.Auth.auth().signIn(with: credential) { [weak self] authResult, error in
-//            guard let strongSelf = self else{ return }
-//            guard authResult != nil , error == nil else {
-//                print("Facebook credential login failed")
-//                return
-//            }
-//            print("Successfully logged user in")
-//            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-//        }
-//    }
-//
-    
-//}
+extension LoginViewController: LoginButtonDelegate {
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        // no operation
+    }
+
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+
+        guard let token = result?.token?.tokenString else {
+            print("User failed to log in with facebook")
+            return
+        }
+        let credential = FacebookAuthProvider.credential(withAccessToken: token)
+        FirebaseAuth.Auth.auth().signIn(with: credential) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            guard authResult != nil , error == nil else {
+                print("Facebook credential login failed")
+                return
+            }
+            print("Successfully logged user in")
+            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+        }
+    }
+
+}
