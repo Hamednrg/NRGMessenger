@@ -11,6 +11,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Database'
 
 pod 'FBSDKLoginKit'
-  
+
+pod 'GoogleSignIn' , '5.0.2'
 
 end
