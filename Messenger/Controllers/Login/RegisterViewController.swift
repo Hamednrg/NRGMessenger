@@ -7,8 +7,11 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 class RegisterViewController: UIViewController {
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     private lazy var scrollview: UIScrollView = {
         let scroll = UIScrollView()
@@ -166,9 +169,15 @@ class RegisterViewController: UIViewController {
               !email.isEmpty, !password.isEmpty,!name.isEmpty, !last.isEmpty, password.count >= 6 else { alertUserLoginError()
                         return }
         // FireBase log in
+        
+        spinner.show(in: view)
         DatabaseManager.shared.userExists(with: email) { [weak self] exist in
             guard let strongSelf = self else { return }
-
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
+            }
+            
             if !exist {
                 FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion:  {  authResult , error in
                     

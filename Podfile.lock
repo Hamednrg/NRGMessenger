@@ -116,13 +116,27 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
+  - InputBarAccessoryView (4.3.3):
+    - InputBarAccessoryView/Core (= 4.3.3)
+  - InputBarAccessoryView/Core (4.3.3)
+  - JGProgressHUD (2.1)
   - leveldb-library (1.22.1)
+  - MessageKit (3.1.0):
+    - InputBarAccessoryView (~> 4.3.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - Realm (5.0.2):
+    - Realm/Headers (= 5.0.2)
+  - Realm/Headers (5.0.2)
+  - RealmSwift (5.0.2):
+    - Realm (= 5.0.2)
+  - SDWebImage (5.8.0):
+    - SDWebImage/Core (= 5.8.0)
+  - SDWebImage/Core (5.8.0)
 
 DEPENDENCIES:
   - FBSDKLoginKit
@@ -130,6 +144,10 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - GoogleSignIn (= 5.0.2)
+  - JGProgressHUD (= 2.1)
+  - MessageKit (= 3.1.0)
+  - RealmSwift (= 5.0.2)
+  - SDWebImage (= 5.8.0)
 
 SPEC REPOS:
   trunk:
@@ -151,9 +169,15 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - InputBarAccessoryView
+    - JGProgressHUD
     - leveldb-library
+    - MessageKit
     - nanopb
     - PromisesObjC
+    - Realm
+    - RealmSwift
+    - SDWebImage
 
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
@@ -174,10 +198,16 @@ SPEC CHECKSUMS:
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  InputBarAccessoryView: 8e7fc09e9cba75e0fee5da13450e15c194806f69
+  JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  MessageKit: 3beb578737a5aa2bba25cc27c7b6d6faa09af5a7
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  Realm: 6b6f096671b64b04d08974177cabb2ff9343d153
+  RealmSwift: a3db6be0488bf3e1d5314c2956cefe98a65cdd01
+  SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
 
-PODFILE CHECKSUM: d3f07fd625213ae1b32d1d30fd30cb558d569f1a
+PODFILE CHECKSUM: 1ac73bc763d2ee849f71844b06736ab8bc15e315
 
 COCOAPODS: 1.10.0
