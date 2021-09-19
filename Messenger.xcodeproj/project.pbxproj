@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		055D039C26F64C8B0026F8F2 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055D039B26F64C8B0026F8F2 /* ChatViewController.swift */; };
+		0562D51426F73C36002BB845 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0562D51326F73C36002BB845 /* StorageManager.swift */; };
 		057D263C26E9FCA3007FC6A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D263B26E9FCA3007FC6A9 /* AppDelegate.swift */; };
 		057D263E26E9FCA3007FC6A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D263D26E9FCA3007FC6A9 /* SceneDelegate.swift */; };
 		057D264026E9FCA3007FC6A9 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D263F26E9FCA3007FC6A9 /* ConversationViewController.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		055D039B26F64C8B0026F8F2 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		0562D51326F73C36002BB845 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		057D263826E9FCA3007FC6A9 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		057D263B26E9FCA3007FC6A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		057D263D26E9FCA3007FC6A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				057D263D26E9FCA3007FC6A9 /* SceneDelegate.swift */,
 				059E8EAC26ED062D00742822 /* Extensions.swift */,
 				058AAD4E26EFD3630093468F /* DatabaseManager.swift */,
+				0562D51326F73C36002BB845 /* StorageManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				057D263E26E9FCA3007FC6A9 /* SceneDelegate.swift in Sources */,
 				055D039C26F64C8B0026F8F2 /* ChatViewController.swift in Sources */,
 				057D265A26EA0192007FC6A9 /* PhotoViewerViewController.swift in Sources */,
+				0562D51426F73C36002BB845 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

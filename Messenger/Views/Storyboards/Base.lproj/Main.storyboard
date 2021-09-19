@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -47,7 +48,9 @@
         <scene sceneID="vAa-Bf-JrI">
             <objects>
                 <navigationController id="wjs-fv-Zjz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="WQ2-MQ-rpo"/>
+                    <tabBarItem key="tabBarItem" title="Profile" selectedImage="person.2.fill" catalog="system" id="WQ2-MQ-rpo">
+                        <imageReference key="image" image="person.2" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="yHI-QX-uLx">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -94,9 +97,10 @@
         <!--Chats-->
         <scene sceneID="mOL-ag-2xd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="93i-B9-Fof" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y5o-8K-luy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" id="agK-Si-Wjr"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" id="agK-Si-Wjr">
+                        <imageReference key="selectedImage" image="message.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Bqc-4q-KnF">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -107,11 +111,16 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Ury-Wd-DQE"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="93i-B9-Fof" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2455" y="508"/>
         </scene>
     </scenes>
     <resources>
+        <image name="message" catalog="system" width="128" height="113"/>
+        <image name="message.fill" catalog="system" width="128" height="113"/>
+        <image name="person.2" catalog="system" width="128" height="81"/>
+        <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

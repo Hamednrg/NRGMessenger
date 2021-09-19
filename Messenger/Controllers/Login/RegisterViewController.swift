@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController {
         email.placeholder = "Email Address..."
         email.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         email.leftViewMode = .always
-        email.backgroundColor = .white
+        email.backgroundColor = .systemBackground
         
         email.delegate = self
         
@@ -61,7 +61,7 @@ class RegisterViewController: UIViewController {
         firstName.placeholder = "First Name..."
         firstName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         firstName.leftViewMode = .always
-        firstName.backgroundColor = .white
+        firstName.backgroundColor = .systemBackground
         
         firstName.delegate = self
         
@@ -79,7 +79,7 @@ class RegisterViewController: UIViewController {
         firstName.placeholder = "Last Name..."
         firstName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         firstName.leftViewMode = .always
-        firstName.backgroundColor = .white
+        firstName.backgroundColor = .systemBackground
         
         firstName.delegate = self
         
@@ -97,7 +97,7 @@ class RegisterViewController: UIViewController {
         password.placeholder = "Password"
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         password.leftViewMode = .always
-        password.backgroundColor = .white
+        password.backgroundColor = .systemBackground
         
         password.delegate = self
         
@@ -117,7 +117,7 @@ class RegisterViewController: UIViewController {
     }()
     override func viewDidLoad() {
         title = "Create an Account"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         
         
@@ -186,7 +186,25 @@ class RegisterViewController: UIViewController {
                         return
                     }
                     
-                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: name, lastName: last, emailAddress: email))
+                    let chatUser = ChatAppUser(firstName: name, lastName: last, emailAddress: email)
+                    DatabaseManager.shared.insertUser(with: chatUser) { success in
+                        if success {
+                            // Upload image
+                            guard let image = strongSelf.imageView.image, let data = image.pngData() else {
+                                return
+                            }
+                            let fileName = chatUser.profilePictureFileName
+                            StorageManager.shared.uploadProfilePicture(with: data, fileName: fileName) { result in
+                                switch result {
+                                case .success(let downloadUrl):
+                                    UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+                                    print(downloadUrl)
+                                case .failure(let error):
+                                    print("storage manager error: \(error)")
+                                }
+                            }
+                        }
+                    }
                     
                     
                     strongSelf.navigationController?.dismiss(animated: true, completion: nil)
