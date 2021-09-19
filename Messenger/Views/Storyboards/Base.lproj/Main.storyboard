@@ -98,8 +98,9 @@
         <scene sceneID="mOL-ag-2xd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y5o-8K-luy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" id="agK-Si-Wjr">
-                        <imageReference key="selectedImage" image="message.fill" catalog="system" symbolScale="large"/>
+                    <tabBarItem key="tabBarItem" title="Chats" id="agK-Si-Wjr">
+                        <imageReference key="image" image="bubble.left.and.bubble.right" catalog="system" symbolScale="large"/>
+                        <imageReference key="selectedImage" image="bubble.left.and.bubble.right.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Bqc-4q-KnF">
@@ -117,8 +118,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="message" catalog="system" width="128" height="113"/>
-        <image name="message.fill" catalog="system" width="128" height="113"/>
+        <image name="bubble.left.and.bubble.right" catalog="system" width="128" height="96"/>
+        <image name="bubble.left.and.bubble.right.fill" catalog="system" width="128" height="97"/>
         <image name="person.2" catalog="system" width="128" height="81"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <systemColor name="systemBackgroundColor">
