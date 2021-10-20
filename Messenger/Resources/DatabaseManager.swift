@@ -40,7 +40,7 @@ extension DatabaseManager {
         
     }
     
-    public func insertUser(with user: ChatAppUser, completion: @escaping (Bool) -> Void){
+    public func insertUser(with user: ChatAppUser, completion: @escaping (Bool) -> Void) {
         database.child(user.safeEmail).setValue([
             "first_name": user.firstName,
             "last_name": user.lastName
@@ -91,6 +91,7 @@ extension DatabaseManager {
             completion(.success(value))
         }
     }
+    
     public enum DataBaseErrors: Error {
         case failedToFetch
         case failedToGetDownloadURL
@@ -99,6 +100,7 @@ extension DatabaseManager {
 // MARK: - Sending messages / Conversation
 
 extension DatabaseManager {
+    
     public func createNewConversation(with otherUserEmail: String, firstMessage: Message, completion: @escaping (Bool) -> Void) {
         guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String else { return }
         let safeEmail = DatabaseManager.safeEmail(emailAddress: currentEmail)
@@ -170,7 +172,6 @@ extension DatabaseManager {
         }
     }
     
-    
     private func finishCreatingConversation(conversationID: String, firstMessage: Message, completion: @escaping (Bool) -> Void) {
         let messageDate = firstMessage.sentDate
         let dateString = ChatViewController.dateFormatter.string(from: messageDate)
@@ -221,12 +222,15 @@ extension DatabaseManager {
             completion(true)
         }
     }
+    
     public func getAllConversations(for email: String, completion: @escaping (Result<String, Error>) -> Void) {
         
     }
+    
     public func getAllMessagesForConversation(with id: String, completion: @escaping (Result<String, Error>) -> Void) {
         
     }
+    
     public func sendMessage(to conversation: String, message: Message, completion: @escaping (Bool) -> Void) {
         
     }

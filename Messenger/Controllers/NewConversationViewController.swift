@@ -18,16 +18,16 @@ class NewConversationViewController: UIViewController {
     private var results = [[String: String]]()
     
     private var hasFetched = false
-
+    
     private lazy var searchBar: UISearchBar = {
-       let search = UISearchBar()
+        let search = UISearchBar()
         search.placeholder = "Search for User"
         search.becomeFirstResponder()
         search.delegate = self
         return search
     }()
     private lazy var tableView: UITableView = {
-       let table = UITableView()
+        let table = UITableView()
         table.isHidden = true
         table.delegate = self
         table.dataSource = self
@@ -63,7 +63,7 @@ class NewConversationViewController: UIViewController {
     @objc func dismissSelf(){
         dismiss(animated: true, completion: nil)
     }
-
+    
 }
 extension NewConversationViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
