@@ -9,54 +9,10 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 
-struct Message: MessageType {
-    
-   public var sender: SenderType
-    
-    public var messageId: String
-    
-    public var sentDate: Date
-    
-    public var kind: MessageKind
-}
-extension MessageKind {
-    var messageKindString: String{
-        switch self{
-        case .text(_):
-            return "text"
-        case .attributedText(_):
-            return "attributed_text"
-        case .photo(_):
-            return "photo"
-        case .video(_):
-            return "video"
-        case .location(_):
-            return "location"
-        case .emoji(_):
-            return "emoji"
-        case .audio(_):
-            return "audio"
-        case .contact(_):
-            return "contact"
-        case .custom(_):
-            return "unkown"
-        }
-    }
-}
-struct Sender: SenderType {
-    public  var photoURL: String
-    
-    public  var senderId: String
-    
-    public  var displayName: String
-    
-    
-}
-
 class ChatViewController: MessagesViewController {
     
     public static let dateFormatter: DateFormatter = {
-       let formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .long
         formatter.locale = .current
@@ -71,9 +27,9 @@ class ChatViewController: MessagesViewController {
     
     private var selfSender: Sender? {
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else { return nil }
-       return Sender(photoURL: "", senderId: email  , displayName: " Hamed Naji")
+        return Sender(photoURL: "", senderId: email  , displayName: " Hamed Naji")
     }
-
+    
     init(with email: String) {
         self.otherUserEmail = email
         super.init(nibName: nil, bundle: nil)
@@ -100,7 +56,7 @@ class ChatViewController: MessagesViewController {
         super.viewDidAppear(animated)
         messageInputBar.inputTextView.becomeFirstResponder()
     }
-
+    
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
@@ -159,5 +115,47 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
     
 }
 
-
+struct Message: MessageType {
+    
+    public var sender: SenderType
+    
+    public var messageId: String
+    
+    public var sentDate: Date
+    
+    public var kind: MessageKind
+}
+extension MessageKind {
+    var messageKindString: String{
+        switch self{
+        case .text(_):
+            return "text"
+        case .attributedText(_):
+            return "attributed_text"
+        case .photo(_):
+            return "photo"
+        case .video(_):
+            return "video"
+        case .location(_):
+            return "location"
+        case .emoji(_):
+            return "emoji"
+        case .audio(_):
+            return "audio"
+        case .contact(_):
+            return "contact"
+        case .custom(_):
+            return "unkown"
+        }
+    }
+}
+struct Sender: SenderType {
+    public  var photoURL: String
+    
+    public  var senderId: String
+    
+    public  var displayName: String
+    
+    
+}
 
