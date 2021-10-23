@@ -22,17 +22,23 @@ class ChatViewController: MessagesViewController {
     public var isNewConversation = false
     
     public let otherUserEmail: String
+    private let conversationID: String?
     
     private var messages = [Message]()
     
     private var selfSender: Sender? {
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else { return nil }
-        return Sender(photoURL: "", senderId: email  , displayName: " Hamed Naji")
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+        return Sender(photoURL: "", senderId: safeEmail  , displayName: "Me")
     }
     
-    init(with email: String) {
+    init(with email: String, id: String?) {
         self.otherUserEmail = email
+        self.conversationID = id
         super.init(nibName: nil, bundle: nil)
+        if let conversationID = conversationID {
+            listenForMessages(id: conversationID)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -40,16 +46,29 @@ class ChatViewController: MessagesViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+   
         view.backgroundColor = .red
         
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
-        
+       
+    }
+    private func listenForMessages(id: String){
+        DatabaseManager.shared.getAllMessagesForConversation(with: id) {[weak self] result in
+            switch result {
+            
+            case .success(let messages):
+                guard !messages.isEmpty else { return }
+                self?.messages = messages
+                DispatchQueue.main.async {
+                    self?.messagesCollectionView.reloadDataAndKeepOffset()
+                }
+            case .failure(let error):
+                print("failed to get messages: \(error)")
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
