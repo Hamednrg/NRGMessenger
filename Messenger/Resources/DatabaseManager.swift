@@ -22,6 +22,17 @@ final class DatabaseManager{
     
     
 }
+extension DatabaseManager {
+    public func getDataFor(path: String, completion: @escaping (Result<Any, Error>) -> Void) {
+        self.database.child("\(path)").observeSingleEvent(of: .value) { snapshot in
+            guard let value = snapshot.value else {
+                completion(.failure(DataBaseErrors.failedToFetch))
+                return
+            }
+            completion(.success(value))
+        }
+    }
+}
 // MARK: - ACCOUNT MANAGEMENT
 extension DatabaseManager {
     
@@ -102,8 +113,12 @@ extension DatabaseManager {
 extension DatabaseManager {
     
     public func createNewConversation(with otherUserEmail: String, name: String, firstMessage: Message, completion: @escaping (Bool) -> Void) {
-        guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String else { return }
+        guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String,
+              let currentName = UserDefaults.standard.value(forKey: "name") as? String
+        else { return }
+        
         let safeEmail = DatabaseManager.safeEmail(emailAddress: currentEmail)
+        
         let ref = database.child("\(safeEmail)")
         ref.observeSingleEvent(of: .value) { [weak self] snapshot in
             guard var userNode = snapshot.value as? [String: Any] else {
@@ -148,7 +163,7 @@ extension DatabaseManager {
             let recipient_newConversationData: [String : Any] = [
                 "id": conversationID,
                 "other_user_email": safeEmail,
-                "name": "self",
+                "name": currentName,
                 "latest_message": [
                     "date": dateString,
                     "message": message,
