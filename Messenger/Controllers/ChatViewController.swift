@@ -70,7 +70,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             // crate convo in database
             let message = Message(sender: selfSender, messageId: messageID, sentDate: Date(), kind: .text(text))
             
-            DatabaseManager.shared.createNewConversation(with: otherUserEmail, firstMessage: message) { success in
+            DatabaseManager.shared.createNewConversation(with: otherUserEmail, name: self.title ?? "",firstMessage: message) { success in
                 if success {
                     print("message sent")
                 } else{
