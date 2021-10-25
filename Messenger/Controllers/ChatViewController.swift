@@ -8,6 +8,8 @@
 import UIKit
 import MessageKit
 import InputBarAccessoryView
+import SDWebImage
+
 
 class ChatViewController: MessagesViewController {
     
@@ -138,7 +140,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
               let name = self.title,
               let selfSender = selfSender else { return }
         
-        let fileName = "photo_message" + messageID
+        let fileName = "photo_message" + messageID.replacingOccurrences(of: " ", with: "-") + ".png"
         // Upload image
         
         StorageManager.shared.uploadMessagePhoto(with: imageData, fileName: fileName) { [weak self] result in
@@ -233,7 +235,16 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
     }
-    
+    func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        guard let message = message as? Message else { return }
+        switch message.kind {
+        case .photo(let media):
+            guard let imageUrl = media.url else { return }
+            imageView.sd_setImage(with: imageUrl, completed: nil)
+        default:
+            break
+        }
+    }
     
 }
 
