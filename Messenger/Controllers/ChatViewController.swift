@@ -9,6 +9,7 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 import SDWebImage
+import AVKit
 
 
 class ChatViewController: MessagesViewController {
@@ -228,8 +229,8 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                 }
             }
         }
-    
-       
+        
+        
     }
 }
 
@@ -307,15 +308,28 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
 }
 
 extension ChatViewController: MessageCellDelegate {
+    
     func didTapImage(in cell: MessageCollectionViewCell) {
+        
         guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
         let message = messages[indexPath.section]
         
         switch message.kind {
         case .photo(let media):
+            
             guard let imageUrl = media.url else { return }
             let vc = PhotoViewerViewController(with: imageUrl)
             self.navigationController?.present(vc, animated: true, completion: nil)
+            
+        case .video(let media):
+            
+            guard let videoUrl = media.url else { return }
+            let vc = AVPlayerViewController()
+            vc.player = AVPlayer(url: videoUrl)
+            vc.allowsPictureInPicturePlayback = true
+            vc.player?.play()
+            present(vc, animated: true, completion: nil)
+            
         default:
             break
         }
