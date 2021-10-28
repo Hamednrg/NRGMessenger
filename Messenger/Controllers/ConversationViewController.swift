@@ -45,6 +45,8 @@ class ConversationViewController: UIViewController {
         return label
     }()
     
+    private var loginObserver: NSObjectProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -52,6 +54,12 @@ class ConversationViewController: UIViewController {
         
         view.addSubview(tableView)
         view.addSubview(noConversationLabel)
+        
+        loginObserver = NotificationCenter.default.addObserver(forName: .didLogInNotification, object: nil, queue: .main, using: { [weak self] _ in
+            guard let strongSelf = self else { return }
+            strongSelf.startListeningForConversations()
+        })
+        
         
         fetchConversation()
         startListeningForConversations()
@@ -68,12 +76,17 @@ class ConversationViewController: UIViewController {
         vaidateAuth()
         
     }
-    private func setUpTableView(){
+   
+    private func startListeningForConversations() {
         
-    }
-    private func startListeningForConversations(){
         guard let email = UserDefaults.standard.value(forKey: "email") as? String else { return }
+        
+        if let observer = loginObserver{
+            NotificationCenter.default.removeObserver(observer)
+        }
+        
         let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+        
         DatabaseManager.shared.getAllConversations(for: safeEmail) { [weak self] result in
             switch result {
             case .success(let conversations):
