@@ -49,7 +49,7 @@ class ConversationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didTapComposeButton))
         
         view.addSubview(tableView)
@@ -60,14 +60,13 @@ class ConversationViewController: UIViewController {
             strongSelf.startListeningForConversations()
         })
         
-        
-        fetchConversation()
+        updateUI()
         startListeningForConversations()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        noConversationLabel.frame = CGRect(x: view.width/4, y: (view.height-200)/2, width: view.width/2, height: 200)
         tableView.frame = view.bounds
     }
     
@@ -91,10 +90,12 @@ class ConversationViewController: UIViewController {
             switch result {
             case .success(let conversations):
                 guard !conversations.isEmpty else {
+                    self?.updateUI()
                     return
                 }
                 self?.conversations = conversations
                 DispatchQueue.main.async {
+                    self?.updateUI()
                     self?.tableView.reloadData()
                 }
             case .failure(let error):
@@ -113,8 +114,15 @@ class ConversationViewController: UIViewController {
         }
     }
     
-    private func fetchConversation(){
-        tableView.isHidden = false
+    private func updateUI() {
+        
+        if conversations.isEmpty {
+            noConversationLabel.isHidden = false
+            tableView.isHidden = true
+        } else {
+            tableView.isHidden = false
+            noConversationLabel.isHidden = true
+        }
     }
     
     @objc func didTapComposeButton() {
@@ -164,5 +172,26 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // begin delete
+            let conversationID = conversations[indexPath.row].id
+            tableView.beginUpdates()
+            
+            DatabaseManager.shared.deleteConversation(conversationID: conversationID) { [weak self] success in
+                if success {
+                    self?.conversations.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .left)
+                    self?.updateUI()
+                }
+            }
+            
+            
+            
+            tableView.endUpdates()
+        }
+    }
 }
