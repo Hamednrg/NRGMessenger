@@ -174,7 +174,7 @@ extension DatabaseManager {
             self?.database.child("\(otherUserEmail)/conversations").observeSingleEvent(of: .value) { [weak self] snapshot in
                 if var conversations = snapshot.value as? [[String: Any]]{
                     conversations.append(recipient_newConversationData)
-                    self?.database.child("\(otherUserEmail)/conversations").setValue([conversationID])
+                    self?.database.child("\(otherUserEmail)/conversations").setValue(conversations)
                 } else{
                     self?.database.child("\(otherUserEmail)/conversations").setValue([recipient_newConversationData])
                 }
@@ -463,6 +463,42 @@ extension DatabaseManager {
             }
             
         }
+        
+    }
+    
+    public func deleteConversation(conversationID: String, completion: @escaping (Bool) -> Void) {
+        
+        guard let email = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+        
+        print("Deleting conversation with id: \(conversationID)")
+        
+        let ref = database.child("\(safeEmail)/conversations")
+        ref.observeSingleEvent(of: .value) { snapshot in
+            if var conversations = snapshot.value as? [[String:Any]] {
+                var positionToRemove = 0
+                for conversation in conversations {
+                    if let id = conversation["id"] as? String, id == conversationID {
+                        print("found conversation to deleted")
+                        break
+                    }
+                    positionToRemove += 1
+                }
+                conversations.remove(at: positionToRemove)
+                ref.setValue(conversations) { error, _ in
+                    guard error == nil else {
+                        completion(false)
+                        print("failed to write new conversation array")
+                        return
+                    }
+                    print("conversation is deleted")
+                    completion(true)
+                }
+            }
+        }
+        
         
     }
 }
