@@ -9,17 +9,6 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-struct Conversation {
-    let id: String
-    let name: String
-    let otherUserEmail: String
-    let latestMessage: LatestMessage
-}
-struct LatestMessage {
-    let date: String
-    let text: String
-    let isRead: Bool
-}
 
 class ConversationViewController: UIViewController {
     
@@ -43,7 +32,8 @@ class ConversationViewController: UIViewController {
         label.font = .systemFont(ofSize: 21, weight: .medium)
         label.isHidden = true
         return label
-    }()
+    } ()
+    
     
     private var loginObserver: NSObjectProtocol?
     
@@ -73,7 +63,6 @@ class ConversationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         vaidateAuth()
-        
     }
    
     private func startListeningForConversations() {
@@ -135,6 +124,7 @@ class ConversationViewController: UIViewController {
         present(navVC, animated: true, completion: nil)
         
     }
+    
     private func createNewConversation(result: SearchResult) {
         let name = result.name
         let email = result.email
@@ -163,18 +153,26 @@ extension ConversationViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = conversations[indexPath.row]
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        openConversation(model: model)
+       
+    }
+    func openConversation(model: Conversation){
         let vc = ChatViewController(with: model.otherUserEmail, id: model.id)
         vc.title = model.name
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    // MARK: deleting conversation
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
+    
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // begin delete

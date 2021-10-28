@@ -152,7 +152,3 @@ extension NewConversationViewController: UITableViewDelegate, UITableViewDataSou
     }
     
 }
-struct SearchResult {
-    let name: String
-    let email: String
-}

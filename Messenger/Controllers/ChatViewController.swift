@@ -47,6 +47,7 @@ class ChatViewController: MessagesViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,7 +60,8 @@ class ChatViewController: MessagesViewController {
         messageInputBar.delegate = self
         setupInputButton()
     }
-    private func setupInputButton(){
+    
+    private func setupInputButton() {
         let button = InputBarButtonItem()
         button.setSize(CGSize(width: 35, height: 35), animated: false)
         button.setImage(UIImage(systemName: "paperclip.badge.ellipsis"), for: .normal)
@@ -69,7 +71,9 @@ class ChatViewController: MessagesViewController {
         messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
         messageInputBar.setStackViewItems([button], forStack: .left, animated: false)
     }
-    private func presentInputActionSheet(){
+    
+    private func presentInputActionSheet() {
+        
         let actionSheet = UIAlertController(title: "Attach Media", message: "What would you like to attach?", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Photo", style: .default, handler: { [weak self] _ in
             self?.presentPhotoInputActionSheet()
@@ -83,8 +87,7 @@ class ChatViewController: MessagesViewController {
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(actionSheet, animated: true, completion: nil)
     }
-    
-    
+  
     private func presentVideoInputActionSheet() {
         let actionSheet = UIAlertController(title: "Attach Video", message: "Where would you like to attach a Video from?", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] _ in
@@ -108,8 +111,7 @@ class ChatViewController: MessagesViewController {
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(actionSheet, animated: true, completion: nil)
     }
-    
-    
+  
     private func presentPhotoInputActionSheet() {
         let actionSheet = UIAlertController(title: "Attach Photo", message: "Where would you like to attach a photo from?", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [weak self] _ in
@@ -129,10 +131,9 @@ class ChatViewController: MessagesViewController {
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(actionSheet, animated: true, completion: nil)
     }
-    
-    
-    
-    private func listenForMessages(id: String){
+ 
+    private func listenForMessages(id: String) {
+        
         DatabaseManager.shared.getAllMessagesForConversation(with: id) {[weak self] result in
             switch result {
             
@@ -154,7 +155,9 @@ class ChatViewController: MessagesViewController {
     }
     
 }
+
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -229,12 +232,11 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                 }
             }
         }
-        
-        
     }
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
+    
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         guard !text.replacingOccurrences(of: " ", with: "").isEmpty,
               let selfSender = self.selfSender,
@@ -266,6 +268,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             }
         }
     }
+    
     private func createMessageID() -> String? {
         // date, otherUserEmail, senderEmail, randomInt
         let dateString = Self.dateFormatter.string(from: Date())
@@ -281,6 +284,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 }
 
 extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
+    
     func currentSender() -> SenderType {
         if let sender = selfSender {
             return sender
@@ -295,6 +299,7 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
     }
+    
     func configureMediaMessageImageView(_ imageView: UIImageView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         guard let message = message as? Message else { return }
         switch message.kind {
@@ -361,36 +366,3 @@ extension MessageKind {
     }
 }
 
-struct Message: MessageType {
-    
-    public var sender: SenderType
-    
-    public var messageId: String
-    
-    public var sentDate: Date
-    
-    public var kind: MessageKind
-}
-
-struct Sender: SenderType {
-    
-    public  var photoURL: String
-    
-    public  var senderId: String
-    
-    public  var displayName: String
-    
-    
-}
-
-struct Media: MediaItem {
-    
-    var url: URL?
-    
-    var image: UIImage?
-    
-    var placeholderImage: UIImage
-    
-    var size: CGSize
-    
-}

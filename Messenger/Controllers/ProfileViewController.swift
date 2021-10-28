@@ -48,7 +48,6 @@ class ProfileViewController: UIViewController {
                 DispatchQueue.main.async {
                     imageView.sd_setImage(with: url, completed: nil)
                 }
-//                self?.downloadImage(imageView: imageView, url: url)
             case .failure(let error):
                 print("failed to get download url: \(error)")
             }
@@ -58,15 +57,7 @@ class ProfileViewController: UIViewController {
         headerView.addSubview(imageView)
         return headerView
     }
-//    func downloadImage(imageView: UIImageView, url: URL){
-//        URLSession.shared.dataTask(with: url) { data, _, error in
-//            guard let data = data, error == nil else { return }
-//            DispatchQueue.main.async {
-//                let image = UIImage(data: data)
-//                imageView.image = image
-//            }
-//        }.resume()
-//    }
+
     
 }
 
