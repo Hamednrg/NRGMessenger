@@ -15,7 +15,6 @@
 		057D263E26E9FCA3007FC6A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D263D26E9FCA3007FC6A9 /* SceneDelegate.swift */; };
 		057D264026E9FCA3007FC6A9 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D263F26E9FCA3007FC6A9 /* ConversationViewController.swift */; };
 		057D264326E9FCA3007FC6A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057D264126E9FCA3007FC6A9 /* Main.storyboard */; };
-		057D264526E9FCA5007FC6A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057D264426E9FCA5007FC6A9 /* Assets.xcassets */; };
 		057D264826E9FCA5007FC6A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 057D264626E9FCA5007FC6A9 /* LaunchScreen.storyboard */; };
 		057D265626EA0102007FC6A9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265526EA0102007FC6A9 /* LoginViewController.swift */; };
 		057D265826EA0154007FC6A9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265726EA0154007FC6A9 /* RegisterViewController.swift */; };
@@ -23,6 +22,7 @@
 		057D265C26EA01AB007FC6A9 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265B26EA01AB007FC6A9 /* VideoPlayerViewController.swift */; };
 		057D265E26EA01DD007FC6A9 /* NewConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265D26EA01DD007FC6A9 /* NewConversationViewController.swift */; };
 		057D266026EA01FA007FC6A9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057D265F26EA01FA007FC6A9 /* ProfileViewController.swift */; };
+		058969422730287200873424 /* ChatAppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058969412730287200873424 /* ChatAppUser.swift */; };
 		058AAD4F26EFD3630093468F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058AAD4E26EFD3630093468F /* DatabaseManager.swift */; };
 		059E8EAD26ED062D00742822 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059E8EAC26ED062D00742822 /* Extensions.swift */; };
 		05A5BB5026EE75140029CFC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A5BB4F26EE75140029CFC1 /* GoogleService-Info.plist */; };
@@ -30,6 +30,7 @@
 		05A827D2272B50DC00E8D1D6 /* LatestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A827D1272B50DC00E8D1D6 /* LatestMessage.swift */; };
 		05A827D4272B51A700E8D1D6 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A827D3272B51A700E8D1D6 /* SearchResult.swift */; };
 		05A827D6272B520600E8D1D6 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A827D5272B520600E8D1D6 /* ChatModel.swift */; };
+		05D76F8327402BB100374D76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 057D264426E9FCA5007FC6A9 /* Assets.xcassets */; };
 		4FC5FE30E7917825A033B6F8 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F21DC9513E1277D17055DCB /* Pods_Messenger.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		057D265B26EA01AB007FC6A9 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		057D265D26EA01DD007FC6A9 /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		057D265F26EA01FA007FC6A9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		058969412730287200873424 /* ChatAppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppUser.swift; sourceTree = "<group>"; };
 		058AAD4E26EFD3630093468F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		059E8EAC26ED062D00742822 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		05A5BB4F26EE75140029CFC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -98,10 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				057D265326E9FEFD007FC6A9 /* Resources */,
-				057D265226E9FEF2007FC6A9 /* ViewModels */,
 				057D265126E9FEE4007FC6A9 /* Models */,
-				057D265026E9FEDD007FC6A9 /* Views */,
 				057D264F26E9FEC2007FC6A9 /* Controllers */,
+				057D265026E9FEDD007FC6A9 /* Views */,
 				057D264926E9FCA5007FC6A9 /* Info.plist */,
 				05A5BB4F26EE75140029CFC1 /* GoogleService-Info.plist */,
 			);
@@ -140,15 +141,9 @@
 				05A827D1272B50DC00E8D1D6 /* LatestMessage.swift */,
 				05A827D3272B51A700E8D1D6 /* SearchResult.swift */,
 				05A827D5272B520600E8D1D6 /* ChatModel.swift */,
+				058969412730287200873424 /* ChatAppUser.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		057D265226E9FEF2007FC6A9 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		057D265326E9FEFD007FC6A9 /* Resources */ = {
@@ -260,7 +255,7 @@
 			files = (
 				057D264826E9FCA5007FC6A9 /* LaunchScreen.storyboard in Resources */,
 				05A5BB5026EE75140029CFC1 /* GoogleService-Info.plist in Resources */,
-				057D264526E9FCA5007FC6A9 /* Assets.xcassets in Resources */,
+				05D76F8327402BB100374D76 /* Assets.xcassets in Resources */,
 				057D264326E9FCA3007FC6A9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058969422730287200873424 /* ChatAppUser.swift in Sources */,
 				057D265626EA0102007FC6A9 /* LoginViewController.swift in Sources */,
 				055F0E6A2729F84B0062D183 /* NewConversationCell.swift in Sources */,
 				05A827D6272B520600E8D1D6 /* ChatModel.swift in Sources */,
