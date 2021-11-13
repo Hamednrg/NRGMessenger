@@ -9,6 +9,7 @@ import Foundation
 import FirebaseStorage
 
 final class StorageManager {
+    
     static let shared = StorageManager()
     private let storage = Storage.storage().reference()
     
@@ -77,11 +78,7 @@ final class StorageManager {
             }
         }
     }
-    
-    public enum StorageErrors: Error {
-        case failedToUpload
-        case failedToGetDownloadURL
-    }
+   
     public func downloadURL(for path: String, completion:  @escaping (Result<URL, Error>) -> Void){
         let reference = storage.child(path)
         
@@ -93,4 +90,13 @@ final class StorageManager {
             completion(.success(url))
         }
     }
+    
+    
+    public enum StorageErrors: Error {
+        case failedToUpload
+        case failedToGetDownloadURL
+    }
+    
+    
+  
 }

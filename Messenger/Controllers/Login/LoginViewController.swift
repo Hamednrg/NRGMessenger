@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "logo")
+        image.image = UIImage(named: "login")
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
         email.returnKeyType = .continue
         email.layer.cornerRadius = 12
         email.layer.borderWidth = 1
-        email.layer.borderColor = UIColor.lightGray.cgColor
+        email.layer.borderColor = UIColor.themeColor?.cgColor
         email.placeholder = "Email Address..."
         email.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         email.leftViewMode = .always
@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
         password.isSecureTextEntry = true
         password.layer.cornerRadius = 12
         password.layer.borderWidth = 1
-        password.layer.borderColor = UIColor.lightGray.cgColor
+        password.layer.borderColor = UIColor.themeColor?.cgColor
         password.placeholder = "Password"
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         password.leftViewMode = .always
@@ -67,7 +67,7 @@ class LoginViewController: UIViewController {
     private lazy var loginButton:UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .themeColor
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
@@ -105,6 +105,7 @@ class LoginViewController: UIViewController {
         title = "Log In"
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
+        navigationController?.navigationBar.tintColor = .themeColor
         
         
         // add subviews
@@ -125,7 +126,7 @@ class LoginViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollview.frame = view.bounds
-        let size = scrollview.width/3
+        let size = scrollview.width/2
         imageView.frame = CGRect(x: (scrollview.width-size)/2, y: 20, width: size, height: size)
         
         emailField.frame = CGRect(x: 30, y: imageView.bottom+60, width: scrollview.width-60 , height: 52)

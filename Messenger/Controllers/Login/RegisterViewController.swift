@@ -23,12 +23,12 @@ class RegisterViewController: UIViewController {
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "person.circle")
-        image.tintColor = .systemBlue
+        image.tintColor = .themeColor
         image.isUserInteractionEnabled = true
         image.contentMode = .scaleAspectFit
         image.layer.masksToBounds = true
         image.layer.borderWidth = 2
-        image.layer.borderColor = UIColor.systemBlue.cgColor
+        image.layer.borderColor = UIColor.themeColor?.cgColor
         return image
     }()
     
@@ -39,7 +39,7 @@ class RegisterViewController: UIViewController {
         email.returnKeyType = .continue
         email.layer.cornerRadius = 12
         email.layer.borderWidth = 1
-        email.layer.borderColor = UIColor.lightGray.cgColor
+        email.layer.borderColor = UIColor.themeColor?.cgColor
         email.placeholder = "Email Address..."
         email.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         email.leftViewMode = .always
@@ -57,7 +57,7 @@ class RegisterViewController: UIViewController {
         firstName.returnKeyType = .continue
         firstName.layer.cornerRadius = 12
         firstName.layer.borderWidth = 1
-        firstName.layer.borderColor = UIColor.lightGray.cgColor
+        firstName.layer.borderColor = UIColor.themeColor?.cgColor
         firstName.placeholder = "First Name..."
         firstName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         firstName.leftViewMode = .always
@@ -75,7 +75,7 @@ class RegisterViewController: UIViewController {
         firstName.returnKeyType = .continue
         firstName.layer.cornerRadius = 12
         firstName.layer.borderWidth = 1
-        firstName.layer.borderColor = UIColor.lightGray.cgColor
+        firstName.layer.borderColor = UIColor.themeColor?.cgColor
         firstName.placeholder = "Last Name..."
         firstName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         firstName.leftViewMode = .always
@@ -93,7 +93,7 @@ class RegisterViewController: UIViewController {
         password.isSecureTextEntry = true
         password.layer.cornerRadius = 12
         password.layer.borderWidth = 1
-        password.layer.borderColor = UIColor.lightGray.cgColor
+        password.layer.borderColor = UIColor.themeColor?.cgColor
         password.placeholder = "Password"
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         password.leftViewMode = .always
@@ -107,7 +107,7 @@ class RegisterViewController: UIViewController {
     private lazy var loginButton:UIButton = {
         let button = UIButton()
         button.setTitle("Register", for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .themeColor
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 12
         button.layer.masksToBounds = true
@@ -118,6 +118,7 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         title = "Create an Account"
         view.backgroundColor = .systemBackground
+        
         
         
         
