@@ -63,6 +63,7 @@ class ChatViewController: MessagesViewController {
     private func setupInputButton() {
         let button = InputBarButtonItem()
         button.setSize(CGSize(width: 35, height: 35), animated: false)
+        button.tintColor = UIColor.themeColor
         button.setImage(UIImage(systemName: "paperclip.badge.ellipsis"), for: .normal)
         button.onTouchUpInside { [weak self] _ in
             self?.presentInputActionSheet()

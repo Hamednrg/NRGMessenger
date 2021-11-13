@@ -27,7 +27,7 @@ class NewConversationViewController: UIViewController {
         return search
     }()
     private lazy var tableView: UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: CGRect.zero, style: .insetGrouped)
         table.isHidden = true
         table.delegate = self
         table.dataSource = self

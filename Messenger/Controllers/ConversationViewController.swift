@@ -16,7 +16,7 @@ class ConversationViewController: UIViewController {
     private var conversations = [Conversation]()
     
     private lazy var tableView: UITableView = {
-        let table = UITableView()
+        let table = UITableView(frame: CGRect.zero, style: .insetGrouped)
         table.register(ConversationTableViewCell.self, forCellReuseIdentifier: ConversationTableViewCell.identifier)
         table.isHidden = true
         table.delegate = self
